@@ -24,7 +24,7 @@ public class TelaLogin extends javax.swing.JFrame {
     ResultSet rs = null;
 
     public void logar() {
-        String sql = "select * from usuarios1 where login=? and senha=?";
+        String sql = "select * from usuarios where login=? and senha=?";
         try {
             //as linhas abaixo preparam a consulta ao banco em função do
             // que foi digitado nas caixas de texto. O ? é subistituido pelo
@@ -57,7 +57,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 TelaPrincipal principal = new TelaPrincipal();
                     principal.setVisible(true);
                     
-                    TelaPrincipal.menuCad.setEnabled(false);
+                    TelaPrincipal.menuCad.setEnabled(true);
                     // a linha abaixo traz uma informaçao do banco de dados e
                     // seta ela em uma label no caso lblusuario
                     

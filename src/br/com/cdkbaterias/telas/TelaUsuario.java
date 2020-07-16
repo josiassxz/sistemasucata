@@ -33,7 +33,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }
 
     private void consultar() {
-        String sql = "select * from usuarios1 where iduser=?";
+        String sql = "select * from usuarios where iduser=?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtUsuId.getText());
@@ -64,7 +64,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     private void adicionar() {
         // a linha abaixo é responsavel pelas instruçoes que iram inserir os dados no banco
-        String sql = "insert into usuarios1 (iduser,usuario,login,senha,perfil) values(?,?,?,?,?)";
+        String sql = "insert into usuarios (iduser,usuario,login,senha,perfil) values(?,?,?,?,?)";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtUsuId.getText());
@@ -109,7 +109,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     
     
     private void pesquisar_usuario() {
-        String sql = "select iduser as 'Id', usuario as 'Nome' , Login as 'Login', senha as 'Senha' from   usuarios1 where usuario like?";
+        String sql = "select iduser as 'Id', usuario as 'Nome' , Login as 'Login', senha as 'Senha' from   usuarios where usuario like?";
         try {
             pst = conexao.prepareStatement(sql);
             //passando o conteudo da caixa de pesquisa para o ?
@@ -150,7 +150,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
 
     private void alterar() {
 
-        String sql = "update usuarios1 set usuario=?, login=?, senha=?, perfil=?,  where iduser=?";
+        String sql = "update usuarios set usuario=?, login=?, senha=?, perfil=?,  where iduser=?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtUsuNome.getText());
@@ -197,7 +197,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover este usuário?", "Atenção", JOptionPane.YES_NO_OPTION);
         if (confirma == JOptionPane.YES_OPTION) {
             // a instrução abaixo remove um usuario do banco
-            String sql = "delete from usuarios1 where iduser=?";
+            String sql = "delete from usuarios where iduser=?";
             try {
                 pst = conexao.prepareStatement(sql);
                 pst.setString(1, txtUsuId.getText());

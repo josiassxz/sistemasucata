@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
-
 /**
  *
  * @author Josias
@@ -29,8 +28,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
      */
     public TelaCliente() {
         initComponents();
-      
-
 
         conexao = ModuloConexao.conector();
     }
@@ -38,21 +35,17 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void adicionar() {
         // a linha abaixo é responsavel pelas instruçoes que iram inserir os dados no banco
-        String sql = "insert into clientes1 (idcli,cpfoucnpj,nomecli,endcli,fonecli) values(?,?,?,?,?)";
+        String sql = "insert into clientes (cpfoucnpj,nomecli,endcli,fonecli) values(?,?,?,?)";
         try {
             pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtCliId.getText());
-            pst.setString(2, txtCliCpfOuCnpj.getText());
-            pst.setString(3, txtCliNome.getText());
-            pst.setString(4, txtCliEndereco.getText());
-            pst.setString(5, txtCliFone.getText());
-            
-            
-
+            // pst.setString(1, txtCliId.getText());
+            pst.setString(1, txtCliCpfOuCnpj.getText());
+            pst.setString(2, txtCliNome.getText());
+            pst.setString(3, txtCliEndereco.getText());
+            pst.setString(4, txtCliFone.getText());
 
             //  estrutura abaixo faz a validação dos campos obrigatorios para que nao fiquem vazios.
-            if ((txtCliCpfOuCnpj.getText().isEmpty())
-                    || (txtCliId.getText().isEmpty())) {
+            if (txtCliCpfOuCnpj.getText().isEmpty()) {
 
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios !!!");
 
@@ -70,7 +63,6 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                     txtCliEndereco.setText(null);
                     txtCliFone.setText(null);
                     txtCliId.setText(null);
-                    
 
                 } else {
                 }
@@ -84,7 +76,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     //metodo para pesquisar clientes pelo nome com filtro
     private void pesquisar_cliente() {
-        String sql = "select idcli as Id,cpfoucnpj as 'Cpf/Cnpj' ,nomecli as Nome,endcli as 'Endereço' ,fonecli as Fone from            clientes1 where nomecli like?";
+        String sql = "select idcli as Id,cpfoucnpj as 'Cpf/Cnpj' ,nomecli as Nome,endcli as 'Endereço' ,fonecli as Fone from            clientes where nomecli like?";
         try {
             pst = conexao.prepareStatement(sql);
             //passando o conteudo da caixa de pesquisa para o ?
@@ -109,12 +101,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         txtCliNome.setText(tblClientes.getModel().getValueAt(setar, 2).toString());
         txtCliEndereco.setText(tblClientes.getModel().getValueAt(setar, 3).toString());
         txtCliFone.setText(tblClientes.getModel().getValueAt(setar, 4).toString());
-        
-        
-        
-       
-        
-        
+
         // a linha abaixo desabilita o botão adicionar
         btnAdicionar.setEnabled(false);
 
@@ -123,7 +110,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     // metodo para alterar os dados do cliente
     private void alterar() {
 
-        String sql = "update clientes1 set cpfoucnpj=?,nomecli=?,endcli=?,fonecli=? where idcli=?";
+        String sql = "update clientes set cpfoucnpj=?,nomecli=?,endcli=?,fonecli=? where idcli=?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtCliCpfOuCnpj.getText());
@@ -131,7 +118,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
             pst.setString(3, txtCliEndereco.getText());
             pst.setString(4, txtCliFone.getText());
             pst.setString(5, txtCliId.getText());
-            if ((txtCliCpfOuCnpj.getText().isEmpty()) ||(txtCliEndereco.getText().isEmpty()) ) {
+            if ((txtCliCpfOuCnpj.getText().isEmpty()) || (txtCliEndereco.getText().isEmpty())) {
 
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios !!!");
 
@@ -158,11 +145,12 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         }
 
     }
+
     // o metodo abaixo nao exclui dados apenas chama o adm do sistema
     // para autorizar a exclusão
-    private void excluir(){
+    private void excluir() {
         JOptionPane.showMessageDialog(null, "Chame um administrador do sistema, alteração não realizada!");
-    
+
     }
 
     /**
@@ -479,14 +467,14 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCliPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliPesquisarKeyReleased
-         // chamando metodo pesquisar cliente
-        
+        // chamando metodo pesquisar cliente
+
         pesquisar_cliente();
     }//GEN-LAST:event_txtCliPesquisarKeyReleased
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
         //Chamando o metodo setar campos
-        
+
         setar_campos();
     }//GEN-LAST:event_tblClientesMouseClicked
 
@@ -502,7 +490,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
     private void btnDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesativarActionPerformed
         // Chamando metodo excluir
-        
+
         JOptionPane.showMessageDialog(null, "Ação não autorizada procure um administrador!");
     }//GEN-LAST:event_btnDesativarActionPerformed
 
