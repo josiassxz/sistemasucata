@@ -40,11 +40,11 @@ public class TelaAlterarPedidos extends javax.swing.JInternalFrame {
         String sql = "insert into pedidos(codpedido,idcli,quantidade,vendedor,tipo,haversucata) values (?,?,?,?,?,?)";
         try {
             pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtNumPedido.getText());
+            pst.setString(1, txtNumPedido.getText().toUpperCase());
             pst.setString(2, txtCliId.getText());
-            pst.setString(3, txtEntregueParcial.getText());
-            pst.setString(4, txtVendedor.getText());
-            pst.setString(5, txtSituacao.getText());
+            pst.setString(3, txtEntregueParcial.getText().toUpperCase());
+            pst.setString(4, txtVendedor.getText().toUpperCase());
+            pst.setString(5, txtSituacao.getText().toUpperCase());
             pst.setString(6, txtHaverSucata.getText());
 
             // a linha abaixo cria um texto de acordo com o radion button selecionado
@@ -118,7 +118,7 @@ public class TelaAlterarPedidos extends javax.swing.JInternalFrame {
             //atenção ao % que é a continuaçao da string sql
             
             
-            pst.setString(1, txtPedidoBuscar.getText() + "%" );
+            pst.setString(1,"%" +txtPedidoBuscar.getText() + "%" );
 
             rs = pst.executeQuery();
             // a linha abaixo usa a biblioteca rs2xml.jar para preencher a tabela

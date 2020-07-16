@@ -39,10 +39,10 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         try {
             pst = conexao.prepareStatement(sql);
             // pst.setString(1, txtCliId.getText());
-            pst.setString(1, txtCliCpfOuCnpj.getText());
-            pst.setString(2, txtCliNome.getText());
-            pst.setString(3, txtCliEndereco.getText());
-            pst.setString(4, txtCliFone.getText());
+            pst.setString(1, txtCliCpfOuCnpj.getText().toUpperCase());
+            pst.setString(2, txtCliNome.getText().toUpperCase());
+            pst.setString(3, txtCliEndereco.getText().toUpperCase());
+            pst.setString(4, txtCliFone.getText().toUpperCase());
 
             //  estrutura abaixo faz a validação dos campos obrigatorios para que nao fiquem vazios.
             if (txtCliCpfOuCnpj.getText().isEmpty()) {
